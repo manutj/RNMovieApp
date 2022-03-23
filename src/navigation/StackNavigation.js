@@ -1,8 +1,6 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Home from '../screens/Home';
-import Movie from '../screens/Movie';
-import Popular from '../screens/Popular';
 import Search from '../screens/Search';
 import {IconButton} from 'react-native-paper';
 const StackNavigation = ({navigation}) => {
@@ -19,7 +17,6 @@ const StackNavigation = ({navigation}) => {
   const buttonLeft = screen => {
     switch (screen) {
       case 'search':
-      case 'movie':
         return (
           <IconButton icon={'arrow-left'} onPress={() => navigation.goBack()} />
         );
@@ -43,16 +40,7 @@ const StackNavigation = ({navigation}) => {
           headerLeft: () => buttonLeft('home'),
         }}
       />
-      <Stack.Screen
-        name="movie"
-        component={Movie}
-        options={{title: '', headerLeft: () => buttonLeft('movie')}}
-      />
-      <Stack.Screen
-        name="popular"
-        component={Popular}
-        options={{title: 'Current Popular Movies'}}
-      />
+
       <Stack.Screen
         name="search"
         component={Search}

@@ -3,22 +3,38 @@ import {Title} from 'react-native-paper';
 import React, {useState, useEffect} from 'react';
 import {getPopularMoviesApi} from '../api/movies';
 import MovieCarousel from '../components/MovieCarousel';
+import MovieVideoModal from '../components/MovieVideoModal';
 
 const Home = ({navigation}) => {
   const [popularMovies, setPopularMovies] = useState(null);
+  const [showVideo, setShowVideo] = useState(false);
+  const [currentMovieId, setCurrentMovieId] = useState(null);
   useEffect(() => {
     getPopularMoviesApi().then(data => setPopularMovies(data.results));
   }, []);
-
   return (
-    <ScrollView showsVerticalScrollIndicator={false}>
-      {popularMovies && (
-        <View style={styles.container}>
-          <Title>Current Popular Movies</Title>
-          <MovieCarousel data={popularMovies} />
-        </View>
-      )}
-    </ScrollView>
+    <>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        {popularMovies && (
+          <View style={styles.container}>
+            <Title style={{textAlign: 'center', marginBottom: 20}}>
+              Current Popular Movies
+            </Title>
+            <MovieCarousel
+              data={popularMovies}
+              navigation={navigation}
+              setShowVideo={setShowVideo}
+              setCurrentMovieId={setCurrentMovieId}
+            />
+          </View>
+        )}
+      </ScrollView>
+      <MovieVideoModal
+        show={showVideo}
+        setShow={setShowVideo}
+        currentMovieId={currentMovieId}
+      />
+    </>
   );
 };
 
