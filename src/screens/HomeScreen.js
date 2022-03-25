@@ -1,11 +1,11 @@
 import {ScrollView, StyleSheet, View} from 'react-native';
 import {Title} from 'react-native-paper';
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {getPopularMoviesApi} from '../api/movies';
 import MovieCarousel from '../components/MovieCarousel';
 import MovieVideoModal from '../components/MovieVideoModal';
 
-const Home = ({navigation}) => {
+const HomeScreen = ({navigation}) => {
   const [popularMovies, setPopularMovies] = useState(null);
   const [showVideo, setShowVideo] = useState(false);
   const [currentMovieId, setCurrentMovieId] = useState(null);
@@ -49,4 +49,4 @@ const styles = StyleSheet.create({
     fontSize: 22,
   },
 });
-export default Home;
+export default HomeScreen;

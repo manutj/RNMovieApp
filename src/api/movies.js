@@ -17,3 +17,24 @@ export const getTrailerMovieApi = movieId => {
       return data;
     });
 };
+
+export const searchMovieApi = search => {
+  const url = `${API_HOST}/search/movie?api_key=${API_KEY}&language=${LANG}&query=${search}`;
+  return fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      return data;
+    });
+};
+
+export function getMovieByIdApi(movieId) {
+  const url = `${API_HOST}/movie/${movieId}?api_key=${API_KEY}&language=${LANG}`;
+
+  return fetch(url)
+    .then(response => {
+      return response.json();
+    })
+    .then(result => {
+      return result;
+    });
+}

@@ -8,7 +8,6 @@ const Navigation = () => {
   const Drawer = createDrawerNavigator();
   return (
     <Drawer.Navigator
-      screenOptions={{headerTintColor: 'white'}}
       initialRouteName="app"
       drawerContent={props => <DrawerNavigation {...props} />}>
       <Drawer.Screen
